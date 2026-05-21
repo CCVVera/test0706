@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>宇萌 CoreXR｜2026 智慧館所轉型白皮書</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;900&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:       #10120f;
+  --ink2:      #2e3028;
+  --ink3:      #6b6e62;
+  --gold:      #c9a84c;
+  --gold-lt:   #e8cc82;
+  --gold-pale: #fdf6e3;
+  --cream:     #f7f4ed;
+  --cream2:    #edeae0;
+  --white:     #ffffff;
+  --dark:      #0d0f18;
+  --dark2:     #161924;
+  --dark3:     #1e2230;
+  --teal:      #1a5c4e;
+  --teal-lt:   #e5f2ee;
+  --border:    rgba(16,18,15,0.10);
+  --border-dk: rgba(255,255,255,0.09);
+  --serif: 'Noto Serif TC', serif;
+  --sans:  'Noto Sans TC', sans-serif;
+  --ease:  cubic-bezier(0.16,1,0.3,1);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);color:var(--ink);background:var(--cream);-webkit-font-smoothing:antialiased;font-size:18px;line-height:1.75;}
+
+/* ─── NAV ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;height:64px;
+  background:rgba(13,15,24,0.82);
+  backdrop-filter:blur(16px);
+  border-bottom:0.5px solid var(--border-dk);
+}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-logo-mark{
+  width:32px;height:32px;border-radius:6px;
+  background:var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-weight:900;font-size:16px;color:var(--dark);
+}
+.nav-logo-text{font-family:var(--serif);font-weight:900;font-size:18px;color:#fff;letter-spacing:0.04em;}
+.nav-logo-text span{color:var(--gold);}
+.nav-links{display:flex;gap:28px;}
+.nav-links a{font-size:15px;color:rgba(255,255,255,0.55);text-decoration:none;letter-spacing:0.04em;transition:color 0.2s;}
+.nav-links a:hover{color:#fff;}
+.nav-cta{
+  font-size:15px;font-weight:500;letter-spacing:0.04em;
+  color:var(--dark);background:var(--gold);
+  padding:9px 22px;border-radius:40px;text-decoration:none;
+  transition:background 0.2s,transform 0.15s;
+}
+.nav-cta:hover{background:var(--gold-lt);transform:translateY(-1px);}
+
+/* ─── HERO ─── */
+#hero{
+  min-height:100vh;display:flex;align-items:center;
+  background:var(--dark);
+  padding:120px 48px 80px;
+  position:relative;overflow:hidden;
+}
+.hero-bg-img{
+  position:absolute;inset:0;z-index:0;pointer-events:none;
+  background-image:url('0515hero.png');
+  background-size:cover;background-position:center right;
+}
+.hero-bg-overlay{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(90deg,
+    rgba(13,15,24,0.78) 0%,
+    rgba(13,15,24,0.65) 30%,
+    rgba(13,15,24,0.28) 58%,
+    rgba(13,15,24,0.08) 80%,
+    rgba(13,15,24,0.20) 100%);
+}
+.hero-bg-edge{
+  position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:
+    radial-gradient(ellipse 75% 65% at 55% 50%,transparent 38%,rgba(13,15,24,0.28) 100%),
+    linear-gradient(180deg,rgba(13,15,24,0.32) 0%,transparent 18%,transparent 78%,rgba(13,15,24,0.50) 100%);
+}
+.hero-grid-bg{
+  position:absolute;inset:0;z-index:3;pointer-events:none;
+  background-image:
+    repeating-linear-gradient(0deg,transparent,transparent 59px,rgba(201,168,76,0.04) 60px),
+    repeating-linear-gradient(90deg,transparent,transparent 59px,rgba(201,168,76,0.04) 60px);
+  mix-blend-mode:overlay;opacity:0.55;
+}
+.hero-glow{
+  position:absolute;top:-15%;right:-12%;z-index:3;pointer-events:none;
+  width:720px;height:720px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,168,76,0.18) 0%,rgba(201,168,76,0.06) 38%,transparent 72%);
+  mix-blend-mode:screen;
+}
+.hero-inner{max-width:1100px;margin:0 auto;width:100%;position:relative;z-index:5;}
+.hero-split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+.hero-left{}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;
+  color:var(--gold);border:0.5px solid rgba(201,168,76,0.3);
+  padding:6px 16px;border-radius:40px;margin-bottom:32px;
+}
+.hero-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);}
+h1.hero-title{
+  font-family:var(--serif);font-weight:900;
+  font-size:clamp(36px,4.5vw,58px);
+  line-height:1.2;letter-spacing:-0.01em;
+  color:#fff;margin-top:0;margin-bottom:10px;padding:0;
+}
+h1.hero-title span{color:var(--gold);}
+.hero-rule{width:40px;height:2px;background:var(--gold);margin:24px 0;opacity:0.7;}
+.hero-sub{
+  font-size:19px;font-weight:300;color:rgba(255,255,255,0.82);
+  line-height:1.9;max-width:480px;margin-bottom:40px;
+}
+.hero-sub strong{color:#fff;font-weight:500;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;}
+.btn-gold{
+  font-size:16px;font-weight:500;letter-spacing:0.04em;
+  color:var(--dark);background:var(--gold);
+  padding:13px 28px;border-radius:40px;text-decoration:none;
+  transition:background 0.2s,transform 0.15s;
+}
+.btn-gold:hover{background:var(--gold-lt);transform:translateY(-2px);}
+.btn-ghost{
+  font-size:16px;font-weight:400;letter-spacing:0.04em;
+  color:rgba(255,255,255,0.65);
+  border:0.5px solid rgba(255,255,255,0.25);
+  padding:13px 28px;border-radius:40px;text-decoration:none;
+  transition:border-color 0.2s,color 0.2s;
+}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.6);color:#fff;}
+/* hero right: split visual */
+.hero-right{display:flex;flex-direction:column;gap:16px;align-self:end;}
+.hero-visual-card{
+  border-radius:14px;overflow:hidden;position:relative;
+  border:0.5px solid rgba(255,255,255,0.08);
+}
+.hero-visual-card.large{height:340px;background:url('vera2.png') center/cover no-repeat;}
+.hero-visual-card.small{height:120px;background:url('背景圖片.png') center/cover no-repeat;}
+.hvc-label{
+  position:absolute;bottom:16px;left:18px;
+  font-size:13px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;
+  color:rgba(255,255,255,0.45);
+}
+.hvc-tag{
+  position:absolute;top:14px;right:14px;
+  font-size:12px;font-weight:500;letter-spacing:0.08em;
+  color:var(--dark);background:var(--gold);
+  padding:3px 10px;border-radius:40px;
+}
+.hvc-center-text{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:6px;
+}
+.hvc-center-text span{
+  font-family:var(--serif);font-size:17px;font-weight:600;color:rgba(255,255,255,0.7);letter-spacing:0.04em;
+}
+.hvc-center-text em{font-style:normal;font-size:13px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;}
+.hvc-divider{width:1px;height:30px;background:rgba(255,255,255,0.12);}
+/* hero stats */
+.hero-stats{
+  display:flex;gap:0;
+  margin-top:56px;padding-top:40px;
+  border-top:0.5px solid rgba(255,255,255,0.08);
+}
+.hero-stat{flex:1;padding:0 24px;border-right:0.5px solid rgba(255,255,255,0.08);}
+.hero-stat:first-child{padding-left:0;}
+.hero-stat:last-child{border-right:none;}
+.hero-stat-num{
+  font-family:var(--serif);font-size:32px;font-weight:900;
+  color:var(--gold);display:block;line-height:1;margin-bottom:8px;
+}
+.hero-stat-label{font-size:14px;font-weight:300;color:#fff;letter-spacing:0.06em;}
+
+/* ─── SECTIONS COMMON ─── */
+section{padding:96px 48px;}
+.container{max-width:1100px;margin:0 auto;}
+.sec-eyebrow{
+  font-size:13px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;
+  color:var(--gold);display:block;margin-bottom:14px;
+}
+.sec-title{
+  font-family:var(--serif);font-weight:900;
+  font-size:clamp(28px,3.2vw,42px);line-height:1.25;
+  letter-spacing:-0.01em;color:var(--ink);margin-bottom:14px;
+}
+.sec-sub{font-size:18px;font-weight:300;color:var(--ink3);line-height:1.85;max-width:520px;}
+.sec-header{margin-bottom:56px;}
+
+/* ─── S2 WHY ─── */
+#why{background:var(--white);}
+.why-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border);border:0.5px solid var(--border);border-radius:14px;overflow:hidden;margin-top:52px;}
+.why-item{background:var(--white);padding:40px 32px;}
+.why-icon{
+  width:40px;height:40px;border-radius:10px;
+  background:var(--gold-pale);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:20px;
+}
+.why-icon svg{width:18px;height:18px;stroke:var(--gold);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+.why-item h3{font-family:var(--serif);font-size:18px;font-weight:600;margin-bottom:10px;}
+.why-item p{font-size:17px;font-weight:300;color:var(--ink3);line-height:1.85;}
+
+/* ─── S3 MARKETS ─── */
+#markets{background:var(--cream);}
+.market-tabs{
+  display:flex;gap:4px;background:rgba(16,18,15,0.07);
+  padding:4px;border-radius:10px;width:fit-content;margin-bottom:36px;
+}
+.m-tab{
+  padding:9px 22px;border-radius:7px;font-size:15px;font-weight:500;
+  color:var(--ink3);cursor:pointer;border:none;background:none;
+  transition:all 0.2s;letter-spacing:0.02em;
+}
+.m-tab.active{background:var(--white);color:var(--ink);box-shadow:0 1px 6px rgba(0,0,0,0.07);}
+.m-panel{display:none;}
+.m-panel.active{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+.m-left{}
+.m-typetags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px;}
+.m-typetag{
+  display:inline-block;font-size:13px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--teal);background:var(--teal-lt);padding:4px 13px;border-radius:40px;margin-bottom:18px;
+}
+.m-typetags .m-typetag{margin-bottom:0;}
+.m-left h3{font-family:var(--serif);font-size:28px;font-weight:900;line-height:1.25;margin-bottom:14px;}
+.m-left>p{font-size:17px;font-weight:300;color:var(--ink3);line-height:1.85;margin-bottom:24px;}
+.pain-list{list-style:none;}
+.pain-list li{
+  display:flex;gap:12px;align-items:flex-start;
+  padding:14px 0;border-bottom:0.5px solid var(--border);font-size:16px;
+}
+.pain-list li:last-child{border-bottom:none;}
+.pbadge{
+  font-size:12px;font-weight:500;letter-spacing:0.09em;text-transform:uppercase;
+  padding:3px 9px;border-radius:40px;white-space:nowrap;margin-top:2px;flex-shrink:0;
+}
+.pbadge.h{background:#fde8e8;color:#b72b2b;}
+.pbadge.r{background:#e8f4e8;color:#1a6e32;}
+.pbadge.d{background:#e8edf8;color:#1a3fa0;}
+.pain-text{color:var(--ink2);line-height:1.65;}
+.pain-text strong{font-weight:500;display:block;margin-bottom:2px;}
+.m-right{background:var(--dark);border-radius:14px;padding:36px;}
+.m-right h4{
+  font-size:13px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:22px;
+}
+.sol-item{padding:18px 0;border-bottom:0.5px solid rgba(255,255,255,0.08);}
+.sol-item:last-child{border-bottom:none;}
+.sol-item h5{font-size:17px;font-weight:500;color:#fff;margin-bottom:6px;}
+.sol-item p{font-size:15px;font-weight:300;color:rgba(255,255,255,0.5);line-height:1.75;}
+
+/* ─── S4 GAPS ─── */
+#gaps{background:#edf5f9;}
+#gaps .sec-eyebrow{color:var(--teal);}
+#gaps .sec-eyebrow::before{background:var(--teal);}
+#gaps .sec-title{color:var(--ink);}
+#gaps .sec-sub{color:var(--ink3);}
+.gaps-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:52px;}
+.gap-card{background:#fff;border-radius:18px;box-shadow:0 4px 28px rgba(0,0,0,0.07);overflow:hidden;transition:transform 0.25s,box-shadow 0.25s;}
+.gap-card:hover{transform:translateY(-5px);box-shadow:0 12px 40px rgba(0,0,0,0.12);}
+.gap-img-wrap{position:relative;}
+.gap-img-ph{height:220px;background:#c8dde8;}
+.gap-badge{position:absolute;top:16px;left:16px;padding:5px 13px;border-radius:20px;font-size:13px;font-weight:700;color:#fff;letter-spacing:0.03em;}
+.gap-badge--gold{background:rgba(180,138,20,0.88);}
+.gap-badge--teal{background:rgba(0,130,110,0.88);}
+.gap-badge--blue{background:rgba(40,100,200,0.88);}
+.gap-body{padding:26px 28px 28px;}
+.gap-body h3{font-family:var(--serif);font-size:22px;font-weight:900;color:var(--ink);margin-bottom:10px;}
+.gap-body p{font-size:16px;color:#666;line-height:1.75;margin-bottom:22px;}
+.gap-footer{display:flex;justify-content:space-between;align-items:center;}
+.gap-link{color:var(--teal);font-size:16px;font-weight:600;text-decoration:none;}
+.gap-link:hover{text-decoration:underline;}
+.gap-stat{font-size:20px;font-weight:900;color:var(--gold);}
+/* === CORE DATA MERGED (features + data) === */
+#features{background:var(--cream)!important;}
+#features .sec-eyebrow{color:var(--gold)!important;}
+#features .sec-eyebrow::before{background:var(--gold);}
+#features .sec-title{color:var(--ink)!important;}
+#features .sec-sub{color:var(--ink3)!important;}
+.cdash-layout{display:grid;grid-template-columns:1fr 1.25fr;gap:52px;align-items:start;margin-top:52px;}
+.cdash-svc-list{display:flex;flex-direction:column;}
+.cdash-svc{display:flex;gap:22px;padding:28px 0;border-bottom:1px solid var(--border);}
+.cdash-svc:last-child{border-bottom:none;}
+.cdash-svc-num{font-family:var(--serif);font-size:30px;font-weight:900;color:var(--gold);opacity:0.55;line-height:1;flex-shrink:0;min-width:38px;}
+.cdash-svc h3{font-size:18px;font-weight:700;color:var(--ink)!important;margin-bottom:8px;}
+.cdash-svc>div>p{font-size:17px;font-weight:300;color:var(--ink3)!important;line-height:1.85;}
+.cdash-svc>div>p strong{color:var(--teal)!important;font-weight:600;}
+.cdash-board-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
+.cdash-board-title{font-size:15px;font-weight:500;color:rgba(255,255,255,0.85)!important;}
+.dcard-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.dcard{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.18);border-radius:12px;padding:20px 18px;display:flex;flex-direction:column;gap:5px;transition:border-color 0.25s,transform 0.25s;box-shadow:0 8px 24px rgba(0,0,0,0.25);}
+.dcard:hover{border-color:rgba(201,168,76,0.55);transform:translateY(-3px);background:rgba(255,255,255,0.11);}
+.dcard-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.dcard-icon{width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;font-size:18px;line-height:1;}
+.dcard-trend{font-size:13px;font-weight:700;color:#4CAF50;display:inline-flex;align-items:center;gap:2px;}
+.dcard-trend::before{content:'↑ ';}
+.dcard-num{font-family:var(--serif);font-size:28px;font-weight:900;color:#d4af37;line-height:1.1;}
+.dcard-unit{font-family:var(--sans);font-size:15px;font-weight:400;color:rgba(212,175,55,0.82);}
+.dcard-title{font-size:14px;font-weight:500;color:rgba(255,255,255,0.92)!important;letter-spacing:0.03em;margin-bottom:4px;}
+.dcard-desc{font-size:14px;font-weight:300;color:rgba(255,255,255,0.72)!important;line-height:1.75;}
+
+/* ─── BRIDGE ─── */
+#bridge{background:var(--dark2);padding:48px;}
+.bridge-inner{
+  max-width:1100px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;gap:32px;
+  border:0.5px solid rgba(201,168,76,0.2);
+  border-radius:14px;padding:36px 48px;
+}
+.bridge-text h3{font-family:var(--serif);font-size:22px;font-weight:900;color:#fff;margin-bottom:6px;}
+.bridge-text p{font-size:16px;font-weight:300;color:rgba(255,255,255,0.45);}
+.bridge-tag{
+  display:flex;gap:12px;flex-shrink:0;
+}
+.bridge-pill{
+  font-size:14px;font-weight:500;letter-spacing:0.06em;
+  color:var(--dark);background:var(--gold);
+  padding:6px 16px;border-radius:40px;
+}
+
+/* ─── S5 FEATURES ─── */
+#features{background:var(--cream);}
+.feat-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:52px;}
+.feat-card{
+  border:0.5px solid var(--border);border-radius:14px;
+  padding:36px 28px;background:var(--white);
+  transition:transform 0.2s,box-shadow 0.2s,border-color 0.2s;
+}
+.feat-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,0.07);border-color:var(--gold);}
+.feat-gap-tag{
+  display:inline-block;font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;
+  border:0.5px solid var(--border);border-radius:40px;
+  padding:3px 10px;color:var(--ink3);margin-bottom:20px;
+}
+.feat-num{
+  font-family:var(--serif);font-size:40px;font-weight:900;
+  color:var(--gold);opacity:0.25;line-height:1;margin-bottom:12px;
+}
+.feat-card h3{font-family:var(--serif);font-size:19px;font-weight:900;margin-bottom:10px;}
+.feat-card>p{font-size:17px;font-weight:300;color:var(--ink3);line-height:1.85;margin-bottom:20px;}
+.feat-scenario{
+  background:var(--cream);border-radius:8px;padding:14px;
+  font-size:14px;font-weight:300;color:var(--ink3);line-height:1.75;
+}
+.feat-scenario strong{color:var(--ink2);font-weight:500;display:block;margin-bottom:3px;}
+
+/* ─── S6 DATA ─── */
+#data{background:var(--teal);}
+#data .sec-title{color:#fff;}
+#data .sec-sub{color:rgba(255,255,255,0.6);}
+.data-layout{display:grid;grid-template-columns:1fr 1.3fr;gap:56px;align-items:center;margin-top:52px;}
+.data-pts{}
+.data-pt{display:flex;gap:20px;padding:22px 0;border-bottom:0.5px solid rgba(255,255,255,0.12);}
+.data-pt:last-child{border-bottom:none;}
+.data-pt-n{
+  font-family:var(--serif);font-size:28px;font-weight:900;
+  color:var(--gold);flex-shrink:0;width:40px;line-height:1;
+}
+.data-pt h4{font-size:17px;font-weight:500;color:#fff;margin-bottom:4px;}
+.data-pt p{font-size:15px;font-weight:300;color:rgba(255,255,255,0.45);line-height:1.7;}
+/* dashboard mock */
+.dash{
+  background:rgba(255,255,255,0.07);
+  border:0.5px solid rgba(255,255,255,0.12);
+  border-radius:16px;padding:24px;
+}
+.dash-hd{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-bottom:16px;margin-bottom:16px;
+  border-bottom:0.5px solid rgba(255,255,255,0.1);
+}
+.dash-hd-title{font-size:15px;font-weight:500;color:rgba(255,255,255,0.7);}
+.dash-live{font-size:13px;font-weight:500;color:#4ade80;background:rgba(74,222,128,0.1);padding:3px 10px;border-radius:40px;}
+.dash-metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+.dash-m{background:rgba(255,255,255,0.06);border-radius:8px;padding:14px;}
+.dash-m-v{font-family:var(--serif);font-size:24px;font-weight:900;color:var(--gold);line-height:1;}
+.dash-m-l{font-size:13px;font-weight:300;color:rgba(255,255,255,0.35);margin-top:5px;}
+.dash-bars{}
+.bar-row{margin-bottom:10px;}
+.bar-lbl{display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:5px;}
+.bar-track{height:5px;background:rgba(255,255,255,0.08);border-radius:3px;overflow:hidden;}
+.bar-fill{height:100%;background:var(--gold);border-radius:3px;}
+
+/* ─── S7 AUTHORITY ─── */
+#authority{background:var(--white);}
+.auth-layout{display:grid;grid-template-columns:1fr 1.6fr;gap:56px;align-items:start;margin-top:52px;}
+.auth-quote{
+  font-family:var(--serif);font-size:20px;font-weight:400;line-height:1.7;
+  color:var(--ink);border-left:2px solid var(--gold);padding-left:24px;margin-bottom:18px;
+}
+.auth-caption{font-size:15px;font-weight:300;color:var(--ink3);padding-left:24px;}
+.auth-badges{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.auth-b{border:0.5px solid var(--border);border-radius:10px;padding:22px;}
+.auth-b h4{font-size:15px;font-weight:500;color:var(--ink);margin-bottom:6px;}
+.auth-b p{font-size:14px;font-weight:300;color:var(--ink3);line-height:1.7;}
+.auth-bar{
+  grid-column:1/-1;background:var(--dark);border-radius:10px;padding:24px 28px;
+  display:flex;align-items:center;gap:20px;
+}
+.auth-bar-num{font-family:var(--serif);font-size:44px;font-weight:900;color:var(--gold);flex-shrink:0;line-height:1;}
+.auth-bar h4{font-size:16px;font-weight:500;color:#fff;margin-bottom:4px;}
+.auth-bar p{font-size:14px;font-weight:300;color:rgba(255,255,255,0.4);line-height:1.65;}
+
+/* ─── S8 MODELS ─── */
+#models{background:var(--cream);}
+.models-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-top:52px;}
+.model-card{
+  border:0.5px solid var(--border);border-radius:14px;padding:32px 28px;
+  background:var(--white);position:relative;
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.model-card:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,0,0,0.07);}
+.model-card.feat{background:var(--dark);border-color:var(--gold);}
+.model-badge{
+  position:absolute;top:-11px;left:28px;
+  font-size:12px;font-weight:500;letter-spacing:0.09em;text-transform:uppercase;
+  background:var(--gold);color:var(--dark);padding:3px 12px;border-radius:40px;
+}
+.model-tag{font-size:13px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:14px;display:block;}
+.model-card.feat .model-tag{color:var(--gold);}
+.model-card h3{font-family:var(--serif);font-size:20px;font-weight:900;margin-bottom:10px;color:var(--ink);}
+.model-card.feat h3{color:#fff;}
+.model-card>p{font-size:15px;font-weight:300;color:var(--ink3);line-height:1.8;margin-bottom:24px;}
+.model-card.feat>p{color:rgba(255,255,255,0.45);}
+.model-feats{list-style:none;}
+.model-feats li{
+  display:flex;gap:9px;font-size:15px;color:var(--ink2);
+  padding:8px 0;border-bottom:0.5px solid var(--border);
+}
+.model-card.feat .model-feats li{color:rgba(255,255,255,0.65);border-bottom-color:rgba(255,255,255,0.08);}
+.model-feats li:last-child{border-bottom:none;}
+.ck{color:var(--teal);flex-shrink:0;}
+.model-card.feat .ck{color:var(--gold);}
+.model-fit{
+  margin-top:20px;background:var(--cream);border-radius:7px;
+  padding:12px 14px;font-size:14px;font-weight:300;color:var(--ink3);line-height:1.7;
+}
+.model-card.feat .model-fit{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.4);}
+.model-fit strong{color:var(--ink2);font-weight:500;}
+.model-card.feat .model-fit strong{color:rgba(255,255,255,0.7);}
+.model-subtitle{
+  font-size:14px;font-weight:500;letter-spacing:0.04em;
+  color:var(--teal);background:var(--teal-lt);
+  display:inline-block;padding:3px 12px;border-radius:40px;margin-bottom:12px;
+}
+.model-card.feat .model-subtitle{color:var(--gold-lt);background:rgba(201,168,76,0.15);}
+
+/* ─── S9 UNLOCK ─── */
+#unlock{background:var(--white);border-top:0.5px solid var(--border);}
+.unlock-layout{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:start;margin-top:52px;}
+/* === MERGED MODELS + UNLOCK === */
+.merge-layout{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:52px;align-items:start;}
+.merge-card{border-radius:16px;padding:40px 36px;}
+.merge-left{background:#fff;border:1px solid #f0f0f0;box-shadow:0 20px 40px rgba(0,0,0,0.05);}
+.merge-left h3{font-family:var(--serif);font-size:22px;font-weight:900;color:#1a1c2e;margin-bottom:28px;border-left:4px solid var(--gold);padding-left:15px;}
+.path-list{list-style:none;display:flex;flex-direction:column;gap:0;margin-bottom:0;}
+.path-item{margin-bottom:22px;}
+.path-item h4{font-size:18px;font-weight:700;color:#1a1c2e;margin-bottom:8px;}
+.path-tags{display:flex;gap:8px;flex-wrap:wrap;}
+.ptag{padding:4px 12px;border-radius:6px;font-size:15px;font-weight:600;}
+.ptag-blue{background:#e8f4fd;color:#2b6cb0;}
+.ptag-purple{background:#f3e8ff;color:#6b46c1;}
+.ptag-teal{background:#e6fffa;color:#2c7a7b;}
+.merge-exp{font-size:15px;font-weight:400;color:#888;line-height:1.8;margin-top:28px;padding-top:20px;border-top:1px solid #eee;}
+.merge-exp strong{color:var(--gold);font-weight:700;}
+.merge-right{background:#1a1c2e;border:1px solid rgba(201,168,76,0.3);box-shadow:0 20px 40px rgba(0,0,0,0.2);}
+.merge-right h3{font-family:var(--serif);font-size:22px;font-weight:900;color:#fff;margin-bottom:12px;}
+.merge-right-desc{font-size:16px;font-weight:300;color:#b0b3c1;line-height:1.8;margin-bottom:24px;}
+.merge-form{display:flex;flex-direction:column;gap:14px;}
+.merge-form input{width:100%;padding:12px 15px;border-radius:8px;border:1px solid #3e415a;background:#2d304d;color:#fff;font-size:16px;font-family:var(--sans);outline:none;transition:border-color 0.2s;box-sizing:border-box;}
+.merge-form input::placeholder{color:rgba(255,255,255,0.35);}
+.merge-form input:focus{border-color:var(--gold);}
+.merge-cta{margin-top:24px;text-align:center;}
+.btn-merge-cta{display:block;width:100%;padding:18px 24px;font-size:19px;font-weight:600;letter-spacing:0.02em;border-radius:12px;text-align:center;}
+.unlock-left h3{font-family:var(--serif);font-size:34px;font-weight:900;line-height:1.2;margin-bottom:14px;}
+.unlock-left h3 span{color:var(--gold);}
+.unlock-left>p{font-size:17px;font-weight:300;color:var(--ink3);line-height:1.85;margin-bottom:24px;}
+.unlock-tags{display:flex;gap:10px;flex-wrap:wrap;}
+.u-tag{
+  font-size:14px;font-weight:400;color:var(--ink2);
+  border:0.5px solid var(--border);padding:6px 16px;border-radius:40px;
+  background:var(--cream);
+}
+.unlock-cards{display:flex;flex-direction:column;gap:14px;}
+.u-card{
+  display:flex;gap:18px;align-items:flex-start;
+  border:0.5px solid var(--border);border-radius:10px;padding:18px;
+  background:var(--cream);transition:border-color 0.2s;
+}
+.u-card:hover{border-color:var(--gold);}
+.u-ep{font-family:var(--serif);font-size:18px;font-weight:900;color:var(--gold);opacity:0.55;flex-shrink:0;line-height:1;margin-top:2px;}
+.u-card h4{font-size:16px;font-weight:500;color:var(--ink);margin-bottom:4px;}
+.u-card p{font-size:14px;font-weight:300;color:var(--ink3);line-height:1.7;}
+
+/* ─── S10 FAQ ─── */
+#faq{background:var(--cream);}
+.faq-wrap{max-width:720px;margin-top:52px;}
+.faq-item{border-bottom:0.5px solid var(--border);padding:24px 0;}
+.faq-q{display:flex;justify-content:space-between;align-items:center;gap:20px;cursor:pointer;}
+.faq-q h4{font-size:17px;font-weight:500;color:var(--ink);line-height:1.55;}
+.faq-tog{
+  width:26px;height:26px;border-radius:50%;
+  border:0.5px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:19px;color:var(--ink3);background:var(--white);
+  flex-shrink:0;transition:all 0.2s;user-select:none;
+}
+.faq-item.open .faq-tog{background:var(--dark);color:#fff;border-color:var(--dark);transform:rotate(45deg);}
+.faq-a{
+  font-size:17px;font-weight:300;color:var(--ink3);line-height:1.85;
+  max-height:0;overflow:hidden;transition:max-height 0.4s var(--ease),padding 0.3s;
+}
+.faq-item.open .faq-a{max-height:200px;padding-top:14px;}
+
+/* ─── S11 CTA ─── */
+#cta{background:var(--dark);text-align:center;padding:120px 48px;}
+.cta-eyebrow{display:block;font-size:13px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+.cta-title{
+  font-family:var(--serif);font-weight:900;
+  font-size:clamp(30px,4vw,52px);color:#fff;line-height:1.2;
+  max-width:680px;margin:0 auto 14px;
+}
+.cta-sub{font-size:17px;font-weight:300;color:rgba(255,255,255,0.45);max-width:440px;margin:0 auto 44px;line-height:1.85;}
+.cta-3pts{
+  max-width:560px;margin:0 auto 56px;
+  display:flex;flex-direction:column;gap:16px;text-align:left;
+}
+.cta-pt{background:#fff;border:0.5px solid #e8e8e8;border-radius:10px;padding:22px 26px;}
+.cta-pt h5{font-size:17px;font-weight:700;color:var(--gold);margin-bottom:8px;}
+.cta-pt p{font-size:16px;font-weight:400;color:#666;line-height:1.75;}
+.cta-pt p strong{color:var(--ink);}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.lead-kit{
+  max-width:400px;margin:56px auto 0;
+  background:rgba(255,255,255,0.04);
+  border:0.5px solid rgba(255,255,255,0.1);border-radius:14px;padding:28px;text-align:left;
+}
+.lead-kit h4{font-family:var(--serif);font-size:19px;font-weight:600;color:#fff;margin-bottom:5px;}
+.lead-kit-sub{font-size:14px;font-weight:300;color:rgba(255,255,255,0.3);margin-bottom:18px;}
+.kit-list{list-style:none;margin-bottom:20px;}
+.kit-list li{font-size:14px;font-weight:300;color:rgba(255,255,255,0.5);padding:6px 0;border-bottom:0.5px solid rgba(255,255,255,0.05);}
+.kit-list li:last-child{border-bottom:none;}
+.kit-list li::before{content:"— ";color:var(--gold);}
+.btn-kit{
+  display:block;width:100%;text-align:center;
+  background:var(--gold);color:var(--dark);
+  font-size:16px;font-weight:500;letter-spacing:0.04em;
+  padding:13px;border-radius:8px;text-decoration:none;
+  transition:background 0.2s;
+}
+.btn-kit:hover{background:var(--gold-lt);}
+
+/* ─── FOOTER ─── */
+footer{
+  background:var(--dark);border-top:0.5px solid rgba(255,255,255,0.06);
+  padding:32px 48px;display:flex;justify-content:space-between;align-items:center;
+}
+.footer-logo{font-family:var(--serif);font-weight:900;font-size:17px;color:rgba(255,255,255,0.35);letter-spacing:0.04em;}
+.footer-logo span{color:var(--gold);}
+footer p{font-size:14px;font-weight:300;color:rgba(255,255,255,0.18);}
+
+/* ─── REVEAL ANIMATIONS ─── */
+.rv{opacity:0;transform:translateY(22px);transition:opacity 0.7s var(--ease),transform 0.7s var(--ease);}
+.rv.vis{opacity:1;transform:translateY(0);}
+.rv-d1{transition-delay:0.1s;}
+.rv-d2{transition-delay:0.2s;}
+.rv-d3{transition-delay:0.3s;}
+/* ─── PREMIUM DASHBOARD CARD ─── */
+.premium-dash-card{
+  background:var(--dark);
+  border:1px solid rgba(212,175,55,0.22);
+  border-radius:14px;padding:36px;
+  box-shadow:0 16px 48px rgba(0,0,0,0.18);
+}
+.pdc-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,0.08);}
+.pdc-title{font-size:15px;font-weight:500;color:rgba(255,255,255,0.85);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px;}
+.pdc-live{display:flex;align-items:center;gap:6px;font-size:13px;color:#4ade80;font-weight:500;}
+.pdc-dot{width:7px;height:7px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px #4ade80;animation:pdcPulse 2s infinite;}
+@keyframes pdcPulse{0%,100%{opacity:1;}50%{opacity:0.35;}}
+.pdc-badge{font-size:12px;font-weight:500;letter-spacing:0.08em;color:var(--gold);background:rgba(201,168,76,0.12);border:0.5px solid rgba(201,168,76,0.3);padding:4px 13px;border-radius:40px;}
+.pdc-quote{font-family:var(--serif);font-size:19px;font-weight:600;color:rgba(255,255,255,0.9);line-height:1.65;border-left:3px solid var(--gold);padding-left:18px;margin:0 0 28px;}
+.pdc-metrics{display:flex;flex-direction:column;}
+.pdc-metric-row{display:flex;gap:16px;align-items:flex-start;padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.07);}
+.pdc-metric-row:last-child{border-bottom:none;}
+.pdc-metric-icon{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;line-height:1;}
+.pdc-metric-label{font-size:12px;font-weight:500;letter-spacing:0.12em;color:var(--gold);text-transform:uppercase;margin-bottom:4px;}
+.pdc-metric-num{font-family:var(--serif);font-size:22px;font-weight:900;color:#fff;line-height:1.1;margin-bottom:5px;display:flex;align-items:center;gap:8px;}
+.pdc-arrow{font-size:17px;color:#4ade80;font-family:var(--sans);}
+.pdc-metric-desc{font-size:14px;font-weight:300;color:rgba(255,255,255,0.45);line-height:1.7;}
+.svc-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;}
+.stag-gold{font-size:12px;font-weight:500;letter-spacing:0.07em;color:var(--teal);background:var(--teal-lt);padding:3px 11px;border-radius:40px;}
+.stag-muted{font-size:12px;font-weight:400;letter-spacing:0.05em;color:var(--ink3);background:rgba(16,18,15,0.07);padding:3px 11px;border-radius:40px;}
+
+@media(max-width:900px){
+  nav{padding:0 20px;}
+  .nav-links{display:none;}
+  section{padding:64px 24px;}
+  #hero{padding:112px 24px 72px;}
+  .hero-bg-img::before{height:28%;bottom:10%;filter:blur(28px);}
+  .hero-bg-img::after{height:22%;bottom:20%;filter:blur(36px);}
+  .hero-bg-overlay{background-size:18px 18px;background-position:0 0,9px 9px;opacity:0.38;}
+  .hero-grid-bg{filter:blur(14px);opacity:0.68;}
+  .hero-split{grid-template-columns:1fr;}
+  .hero-right{display:none;}
+  .hero-stats{gap:0;flex-wrap:wrap;}
+  .hero-stat{flex:0 0 50%;padding:12px 0;border-right:none;border-bottom:0.5px solid rgba(255,255,255,0.08);}
+  .why-grid,.gaps-grid,.feat-grid,.models-grid,.auth-badges,.cta-3pts{grid-template-columns:1fr;}
+  .merge-layout{grid-template-columns:1fr;}
+  .merge-card{padding:28px 20px;}
+  .btn-merge-cta{font-size:17px;}
+  .data-layout,.auth-layout,.unlock-layout,.m-panel.active{grid-template-columns:1fr;}
+  .cdash-layout{grid-template-columns:1fr;}
+  .dcard-grid{grid-template-columns:1fr 1fr;}
+  .auth-bar{grid-column:auto;}
+  footer{flex-direction:column;gap:10px;text-align:center;}
+  #bridge .bridge-inner{flex-direction:column;padding:24px;}
+}
+</style>
+<noscript><style>.rv{opacity:1!important;transform:none!important;}</style></noscript>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://arplanet.com.tw/#organization",
+      "name": "宇萌數位科技有限公司",
+      "alternateName": "CoreXR",
+      "url": "https://arplanet.com.tw",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://arplanet.com.tw/coreXR_LOGO.png",
+        "width": 200,
+        "height": 56
+      },
+      "description": "整合 AI 與 XR 技術，為博物館、觀光工廠及商業空間解決人力缺口，創造高投報率的場域數位轉型。16 年實戰經驗，提供 AI 虛擬館員、AR 互動導購、無碼定位系統等模組化解決方案。",
+      "foundingDate": "2010",
+      "areaServed": {
+        "@type": "Country",
+        "name": "台灣"
+      },
+      "knowsAbout": ["擴增實境", "人工智慧", "XR 體驗設計", "場域數位轉型", "智慧博物館", "AR 導購"],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "CoreXR 場域數位轉型服務",
+        "itemListElement": [
+          {"@type": "Offer", "itemOffered": {"@id": "https://arplanet.com.tw/#service-ai-guide"}},
+          {"@type": "Offer", "itemOffered": {"@id": "https://arplanet.com.tw/#service-ar-commerce"}},
+          {"@type": "Offer", "itemOffered": {"@id": "https://arplanet.com.tw/#service-xr-experience"}},
+          {"@type": "Offer", "itemOffered": {"@id": "https://arplanet.com.tw/#service-positioning"}},
+          {"@type": "Offer", "itemOffered": {"@id": "https://arplanet.com.tw/#service-consulting"}}
+        ]
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://arplanet.com.tw/#service-ai-guide",
+      "name": "AI 虛擬館員導覽服務",
+      "alternateName": "AI Virtual Guide",
+      "description": "「親切領導型」AI 數位導覽員，提供 24 小時多語系專業接待，取代傳統語音導覽機，解決場館志工荒問題，成本遠低於長期人力聘用。",
+      "provider": {"@id": "https://arplanet.com.tw/#organization"},
+      "serviceType": "AI 導覽技術",
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "博物館、文化館所、國家級展館"
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://arplanet.com.tw/#service-ar-commerce",
+      "name": "AR 互動導購模組",
+      "alternateName": "AR Interactive Commerce",
+      "description": "觀眾在展品前啟動 AR 互動的瞬間，自動發放電子優惠券並跳出購買連結，精準導引至文創商店，可提升提袋率 60%，讓感動即時轉為訂單。",
+      "provider": {"@id": "https://arplanet.com.tw/#organization"},
+      "serviceType": "AR 導購轉化",
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "觀光工廠、企業展廳、文創商店"
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://arplanet.com.tw/#service-xr-experience",
+      "name": "XR 視覺體驗設計",
+      "alternateName": "XR Visual Experience Design",
+      "description": "運用 XR 技術打造現象級視覺奇觀，為短期特展與國際博覽會創造高社群分享價值的互動裝置，讓場域自帶流量，延長觀眾留駐時間。",
+      "provider": {"@id": "https://arplanet.com.tw/#organization"},
+      "serviceType": "XR 展覽體驗設計",
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "短期特展、國際博覽會、品牌體驗館"
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://arplanet.com.tw/#service-positioning",
+      "name": "CoreXR 無碼定位系統",
+      "alternateName": "Codeless AR Positioning System",
+      "description": "觀眾拿起手機即可啟動 AR 互動，無需掃 QR Code、無需額外硬體設備，不破壞展場視覺美感，單人即可完成維運管理。",
+      "provider": {"@id": "https://arplanet.com.tw/#organization"},
+      "serviceType": "AR 定位技術"
+    },
+    {
+      "@type": "Service",
+      "@id": "https://arplanet.com.tw/#service-consulting",
+      "name": "場域數位轉型顧問服務",
+      "alternateName": "Venue Digital Transformation Consulting",
+      "description": "提供標案規格範本、技術轉型白皮書與 ROI 試算模型，協助場館對接政府補助與公部門採購，16 年實戰顧問陪同全程規劃 5–8 月預算規劃期轉型。",
+      "provider": {"@id": "https://arplanet.com.tw/#organization"},
+      "serviceType": "數位轉型顧問",
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "政府機關、公立博物館、文化部門"
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <img src="coreXR_LOGO.png" alt="宇萌 CoreXR - 場域數位轉型與 AI 導覽專家" style="height:36px;width:auto;">
+  </a>
+  <div class="nav-links">
+    <a href="#markets">場域類型</a>
+    <a href="#features">核心功能</a>
+    <a href="#models">導入方案</a>
+    <a href="#unlock">解密場館</a>
+    <a href="#faq">常見問題</a>
+  </div>
+  <a href="https://line.me/R/ti/p/@847merpl" target="_blank" rel="noopener" class="nav-cta">LINE 預約場域健檢</a>
+</nav>
+
+<!-- S1 HERO -->
+<section id="hero">
+  <div class="hero-bg-img"></div>
+  <div class="hero-bg-overlay"></div>
+  <div class="hero-bg-edge"></div>
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-split">
+      <div class="hero-left">
+        <div class="hero-eyebrow">2026 智慧館所轉型</div>
+        <h1 class="hero-title">
+          讓場域開口說話：<br>
+          <span>CoreXR 數位敘事<br>解決方案，重塑空間商業產值</span>
+        </h1>
+        <div class="hero-rule"></div>
+        <p class="hero-sub">
+          整合 <strong>AI 與 XR 技術</strong>，為博物館、觀光工廠及商業空間，解決人力缺口並創造<strong>高投報率</strong>的數位轉型，定義場域新價值。
+        </p>
+        <div class="hero-btns">
+          <a href="#models" class="btn-gold">查看 2026 轉型方案 →</a>
+          <a href="#cta" class="btn-ghost">下載預算規劃參考表</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-visual-card large"></div>
+        <div class="hero-visual-card small">
+          <div class="hvc-tag">各式場域</div>
+          <div class="hvc-center-text">
+            <em>高投報模組</em>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat" aria-label="16 年以上 XR 虛實整合實戰經驗">
+        <span class="hero-stat-num">16+</span>
+        <span class="hero-stat-label">年 XR 虛實整合實戰經驗</span>
+      </div>
+      <div class="hero-stat" aria-label="100% 數位實踐成功落地">
+        <span class="hero-stat-num">100%</span>
+        <span class="hero-stat-label">數位實踐成功落地</span>
+      </div>
+      <div class="hero-stat" aria-label="30% 場域營運人力成本優化">
+        <span class="hero-stat-num">30%</span>
+        <span class="hero-stat-label">場域營運人力成本優化</span>
+      </div>
+      <div class="hero-stat" aria-label="50% 觀眾留駐時間提升">
+        <span class="hero-stat-num">50%</span>
+        <span class="hero-stat-label">觀眾留駐時間提升</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S2 WHY -->
+<section id="why">
+  <div class="container">
+    <div class="sec-header">
+      <span class="sec-eyebrow">我們的角色</span>
+      <h2 class="sec-title">數位顧問，不是系統供應商。</h2>
+      <p class="sec-sub">好的科技，應該讓營運變簡單，而不是增加負擔。我們在服務國家級場域的過程中，精煉出最穩定的核心技術——現在將這些經驗模組化，為您解決最現實的考量。</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-item rv">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+        <h3>預算靈活化</h3>
+        <p>從一次性導入到「以營收為導向」的訂閱分潤模式，減輕財務壓力，讓每一座場域都找得到適合自己的入場門檻。</p>
+      </div>
+      <div class="why-item rv rv-d1">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <h3>維護極簡化</h3>
+        <p>無需掃碼、無需複雜硬體，一鍵後台管理，一人即可維運。後台介面直覺化，就像使用社群軟體一樣簡單。</p>
+      </div>
+      <div class="why-item rv rv-d2">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg></div>
+        <h3>效益可視化</h3>
+        <p>內建數據儀表板，讓您清楚看見導客量與轉化率。每一分預算都花在刀口上，每一次展覽都有數字為決策背書。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S3 MARKETS -->
+<section id="markets">
+  <div class="container">
+    <div class="sec-header">
+      <span class="sec-eyebrow">三大市場</span>
+      <h2 class="sec-title">您的場域，在哪裡？</h2>
+      <p class="sec-sub">按場域性質與獲利痛點分類，找到最對應您現況的問題所在。</p>
+    </div>
+    <div class="market-tabs" role="tablist" aria-label="場域類型切換">
+      <button class="m-tab active" role="tab" aria-selected="true" aria-controls="mp-0" data-category="museum-ai-guide" onclick="switchTab(0)">文化觀光</button>
+      <button class="m-tab" role="tab" aria-selected="false" aria-controls="mp-1" data-category="business-ar-commerce" onclick="switchTab(1)">商務型場域</button>
+      <button class="m-tab" role="tab" aria-selected="false" aria-controls="mp-2" data-category="exhibition-xr-experience" onclick="switchTab(2)">大型展會</button>
+    </div>
+    <!-- A -->
+    <div class="m-panel active" id="mp-0" role="tabpanel" aria-label="文化觀光：博物館與美術館 AI 虛擬導覽解決方案" data-category="museum-ai-guide">
+      <div class="m-left">
+        <div class="m-typetags">
+          <span class="m-typetag">博物館・美術館</span>
+          <span class="m-typetag">AI 虛擬導覽</span>
+          <span class="m-typetag">文化資產數位化</span>
+        </div>
+        <h3>讓展品開口說話，不再受限於<strong>人力缺口</strong>。</h3>
+        <p><strong>宇萌 AI 數位虛擬人解法</strong>，為<strong>博物館</strong>提供 <strong>24h 多語系虛擬接待</strong>，取代厚重的導覽設備與實體限制。滿足大眾對沉浸式導覽與數位策展的期待，解決文化場域轉型過程中的敘事難題。</p>
+        <ul class="pain-list">
+          <li><span class="pbadge h">人力缺口</span><div class="pain-text"><strong>導覽人力嚴重短缺</strong>志工老齡化、招募困難，旺季接待品質難以維持，語言服務更是奢望。</div></li>
+          <li><span class="pbadge r">變現缺口</span><div class="pain-text"><strong>文創營收停滯不前</strong>觀眾只看展不消費，文創轉化率低，票務收入無法支撐數位投資。</div></li>
+          <li><span class="pbadge d">數位缺口</span><div class="pain-text"><strong>缺乏觀眾行為洞察</strong>不知道哪件展品最受歡迎、觀眾在哪裡迷路、下次展覽該如何優化。</div></li>
+        </ul>
+      </div>
+      <div class="m-right">
+        <h4>CoreXR 對應解方</h4>
+        <div class="sol-item"><h5><strong>AI 數位虛擬館員</strong>：全天候虛擬駐點導覽</h5><p>「親切領導型」數位顧問取代枯燥語音導覽機，多語言接待零斷點，成本遠低於長期聘用。</p></div>
+        <div class="sol-item"><h5><strong>AR 互動</strong>帶動文創轉化</h5><p>觀眾在展品前啟動 AR 互動的當下，即跳出限定文創購買連結，感動即時轉為訂單。</p></div>
+        <div class="sol-item"><h5><strong>CoreXR 無碼定位系統</strong></h5><p>拿起手機即互動，無需掃碼、無需額外硬體，不破壞展場美感，維運一人即可完成。</p></div>
+      </div>
+    </div>
+    <!-- B -->
+    <div class="m-panel" id="mp-1" role="tabpanel" aria-label="商務型場域：觀光工廠與企業展廳 AR 導購轉化方案" data-category="business-ar-commerce">
+      <div class="m-left">
+        <div class="m-typetags">
+          <span class="m-typetag">觀光工廠・企業展廳</span>
+          <span class="m-typetag">AR 導購轉化</span>
+          <span class="m-typetag">品牌體驗升級</span>
+        </div>
+        <h3>AR 互動導購，將人流轉化為<strong>實質產值</strong>。</h3>
+        <p>針對<strong>觀光工廠</strong>與<strong>企業展廳</strong>設計的新商業模式，在觀眾被感動的瞬間精準發放<strong>電子優惠券</strong>，顯著提升<strong>提袋率</strong>與<strong>轉化率</strong>。對接智慧零售與品牌行銷需求，將實體人流轉化為可追蹤、可量化的數位轉型產值。</p>
+        <ul class="pain-list">
+          <li><span class="pbadge h">人力缺口</span><div class="pain-text"><strong>旺季接待人力不足</strong>假日旺季人手告急，解說品質不穩，訪客體驗大打折扣，卻無法持續增聘。</div></li>
+          <li><span class="pbadge r">變現缺口</span><div class="pain-text"><strong>參觀與消費斷鏈</strong>訪客完成參觀後離場，購物衝動無法被即時捕捉，現場銷售未達潛力上限。</div></li>
+          <li><span class="pbadge d">數位缺口</span><div class="pain-text"><strong>品牌故事難以深化</strong>想傳遞品牌精神，但靜態展板與紙本 DM 早已失去年輕客群的注意力。</div></li>
+        </ul>
+      </div>
+      <div class="m-right">
+        <h4>CoreXR 對應解方</h4>
+        <div class="sol-item"><h5><strong>AR 導購遊戲</strong>：在感動瞬間領取優惠券，提升<strong>提袋率 60%</strong></h5><p>AR 互動達成後自動發放線上電子優惠券，精準導引至實體店鋪消耗，提袋率顯著提升。</p></div>
+        <div class="sol-item"><h5><strong>品牌故事</strong>沉浸化呈現</h5><p>製程、原料產地、品牌歷程以 XR 情境重現，讓訪客親身體驗品牌價值，深化黏著度。</p></div>
+        <div class="sol-item"><h5><strong>訪客行為數據</strong>回饋運營</h5><p>了解哪個展區停留最久、哪個互動點轉化最高，數據驅動場域優化，每次迭代更精準。</p></div>
+      </div>
+    </div>
+    <!-- C -->
+    <div class="m-panel" id="mp-2" role="tabpanel" aria-label="大型展會：短期特展與國際博覽會 XR 感官震撼體驗" data-category="exhibition-xr-experience">
+      <div class="m-left">
+        <div class="m-typetags">
+          <span class="m-typetag">短期特展・國際博覽會</span>
+          <span class="m-typetag">XR 感官震撼</span>
+          <span class="m-typetag">社群打卡熱點</span>
+        </div>
+        <h3>引爆社群打卡，讓場域<strong>自帶流量</strong>。</h3>
+        <p>運用 <strong>XR 視覺體驗設計</strong>打造<strong>現象級奇觀</strong>，讓<strong>短期特展</strong>與<strong>國際博覽會</strong>成為<strong>社群媒體</strong>的焦點，延長留駐時間並極大化<strong>品牌聲量</strong>。強化展會的虛實整合互動，提升社群擴散力，創造符合數位原住民偏好的感官奇觀。</p>
+        <ul class="pain-list">
+          <li><span class="pbadge h">人力缺口</span><div class="pain-text"><strong>跨場地維運協調複雜</strong>多展區、多語系接待需求，展期間人力調配成本與難度極高。</div></li>
+          <li><span class="pbadge r">變現缺口</span><div class="pain-text"><strong>票務以外收益難以開拓</strong>特展週期短，如何最大化每位觀眾的消費價值是核心挑戰。</div></li>
+          <li><span class="pbadge d">數位缺口</span><div class="pain-text"><strong>社群聲量無法有效引爆</strong>缺乏讓觀眾「自願」打卡分享的數位互動設計，錯失低成本擴散機會。</div></li>
+        </ul>
+      </div>
+      <div class="m-right">
+        <h4>CoreXR 對應解方</h4>
+        <div class="sol-item"><h5><strong>XR 視覺奇觀</strong>創造打卡誘因</h5><p>設計具高度分享價值的互動裝置，讓觀眾主動成為品牌傳播節點，社群曝光零成本擴散。</p></div>
+        <div class="sol-item"><h5><strong>限時限定導購模組</strong></h5><p>觀眾掃描展品，畫面立即跳出「期間限定紀念品」下單連結，以稀缺性激發即時購買衝動。</p></div>
+        <div class="sol-item"><h5><strong>AI 虛擬代言人</strong>全程導覽</h5><p>客製化 AI 虛擬人根據觀眾互動推薦套票組合與周邊商品，兼顧體驗與營收雙重目標。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S4 GAPS -->
+<section id="gaps">
+  <div class="container">
+    <div class="sec-header">
+      <span class="sec-eyebrow">三大痛點</span>
+      <h2 class="sec-title">每座場館都在對抗<br>這三個缺口。</h2>
+      <p class="sec-sub">不論您的場域屬於哪個類型，這三個根本問題始終如影隨形。</p>
+    </div>
+
+    <div class="gaps-grid">
+
+      <!-- 01 人力缺口 -->
+      <article class="gap-card rv">
+        <div class="gap-img-wrap">
+          <div class="gap-img-ph"></div>
+          <span class="gap-badge gap-badge--gold">★ Gap 01</span>
+        </div>
+        <div class="gap-body">
+          <h3>人力缺口</h3>
+          <p>導覽人力短缺、老齡化，旺季品質失控。AI 數位虛擬導覽員在現有裝置上即可提供服務，維運成本遠低於人力。</p>
+          <div class="gap-footer">
+            <a href="#" class="gap-link">了解解方</a>
+            <span class="gap-stat">−30% 人力成本</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 02 變現缺口 -->
+      <article class="gap-card rv rv-d1">
+        <div class="gap-img-wrap">
+          <div class="gap-img-ph"></div>
+          <span class="gap-badge gap-badge--teal">★ Gap 02</span>
+        </div>
+        <div class="gap-body">
+          <h3>變現缺口</h3>
+          <p>觀眾只看不買、文創轉化率低、票務收入單一。參觀結束後，場館與觀眾的商業關係就此中斷。</p>
+          <div class="gap-footer">
+            <a href="#" class="gap-link">了解解方</a>
+            <span class="gap-stat">+20% 轉化率</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 03 數位缺口 -->
+      <article class="gap-card rv rv-d2">
+        <div class="gap-img-wrap">
+          <div class="gap-img-ph"></div>
+          <span class="gap-badge gap-badge--blue">★ Gap 03</span>
+        </div>
+        <div class="gap-body">
+          <h3>數位缺口</h3>
+          <p>沒有數據、沒有互動、不知道觀眾在哪裡停留。靠直覺辦展的時代已經過去。</p>
+          <div class="gap-footer">
+            <a href="#" class="gap-link">了解解方</a>
+            <span class="gap-stat">100% 數據支撐</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- BRIDGE -->
+<div id="bridge">
+  <div class="bridge-inner">
+    <div class="bridge-text">
+      <h3>痛點清楚了，解法在這裡。</h3>
+      <p>CoreXR 針對人力、變現、數位三個缺口，各有一套對應的核心模組。不是功能堆疊，是精準狙擊。</p>
+    </div>
+    <div class="bridge-tag">
+      <span class="bridge-pill">AI 虛擬人</span>
+      <span class="bridge-pill">AR 導購</span>
+      <span class="bridge-pill">數據儀表板</span>
+    </div>
+  </div>
+</div>
+
+<!-- S5+S6 CORE DATA (features + data merged) -->
+<section id="features" style="display:grid;grid-template-columns:1fr 1fr;height:540px;">
+
+  <!-- 左：深綠內容區 -->
+  <div class="rv" style="background:#0c2b22;padding:52px 52px;display:flex;flex-direction:column;justify-content:center;">
+
+    <!-- 小標籤 -->
+    <span style="display:inline-block;font-size:11px;font-weight:600;letter-spacing:0.1em;color:#d4af37;border:1px solid rgba(212,175,55,0.4);padding:4px 14px;border-radius:40px;width:fit-content;margin-bottom:18px;">核心數據服務</span>
+
+    <!-- H2 -->
+    <h2 style="font-family:var(--serif);font-size:clamp(22px,2.5vw,32px);font-weight:900;color:#ffffff;line-height:1.25;margin-bottom:14px;">
+      核心數據服務，<br>是別人搬不走的護城河。
+    </h2>
+
+    <!-- 副標 -->
+    <p style="font-size:15px;color:rgba(255,255,255,0.55);line-height:1.75;margin-bottom:28px;max-width:400px;">
+      CoreXR 不只優化體驗，更即時積累真實的觀眾行為軌跡。我們將每一次驚嘆，轉化為具備 100% 所有權的數據資產。
+    </p>
+
+    <!-- 服務標籤群 -->
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;">
+      <span style="background:#d4af37;color:#0c2b22;padding:6px 14px;border-radius:6px;font-size:13px;font-weight:700;">AI 虛擬導覽員</span>
+      <span style="border:1.5px solid rgba(212,175,55,0.6);color:#d4af37;padding:6px 14px;border-radius:6px;font-size:13px;font-weight:600;">AR 導覽＋導購</span>
+      <span style="border:1.5px solid rgba(212,175,55,0.6);color:#d4af37;padding:6px 14px;border-radius:6px;font-size:13px;font-weight:600;">無碼定位</span>
+      <span style="border:1.5px solid rgba(212,175,55,0.6);color:#d4af37;padding:6px 14px;border-radius:6px;font-size:13px;font-weight:600;">數據儀表板</span>
+    </div>
+
+    <!-- 底部數據列 -->
+    <div style="background:rgba(0,0,0,0.25);border-radius:10px;padding:18px 24px;display:flex;gap:0;">
+      <div style="flex:1;border-right:1px solid rgba(255,255,255,0.12);padding-right:20px;">
+        <div style="font-family:var(--serif);font-size:24px;font-weight:900;color:#d4af37;line-height:1;">+30%</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.45);margin-top:5px;">AI 接待優化</div>
+      </div>
+      <div style="flex:1;border-right:1px solid rgba(255,255,255,0.12);padding:0 20px;">
+        <div style="font-family:var(--serif);font-size:24px;font-weight:900;color:#d4af37;line-height:1;">15.8%</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.45);margin-top:5px;">互動轉化率</div>
+      </div>
+      <div style="flex:1;padding-left:20px;">
+        <div style="font-family:var(--serif);font-size:24px;font-weight:900;color:#d4af37;line-height:1;">+50%</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.45);margin-top:5px;">停留時間延長</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 右：圖片 -->
+  <div style="overflow:hidden;position:relative;">
+    <img src="數據護城河.png" alt="核心數據服務" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">
+  </div>
+
+</section>
+
+<!-- S7 AUTHORITY -->
+<section id="authority">
+  <div class="container">
+    <div class="sec-header">
+      <span class="sec-eyebrow">技術背書</span>
+      <h2 class="sec-title">從最嚴苛的考驗中，<br>提煉出的穩定品質。</h2>
+    </div>
+    <div class="auth-layout">
+      <div>
+        <p class="auth-quote">「我們在服務國家級場域的過程中，處理過最珍貴的文化數據。正因如此，我們最懂如何守護並推廣您的場域價值。」</p>
+        <p class="auth-caption">——宇萌 CoreXR 技術核心宗旨</p>
+      </div>
+      <div class="auth-badges">
+        <div class="auth-b rv"><h4>跨場域定位穩定性</h4><p>通過指標性國家文化單位、跨南北院區高標準驗證，定位精準度達世界級水準。</p></div>
+        <div class="auth-b rv rv-d1"><h4>文化資產資安防護</h4><p>符合政府最高等級資安規範，確保場館珍貴數位資產在最安全的環境中被妥善保護。</p></div>
+        <div class="auth-b rv rv-d2"><h4>跨語系 AI 即時互動</h4><p>支援繁中、簡中、英、日、韓等多語言，AI 回應延遲低於 0.8 秒，流暢如真人對話。</p></div>
+        <div class="auth-bar rv rv-d3">
+          <div class="auth-bar-num">16</div>
+          <div><h4>年場域科技深耕</h4><p>從國家級藝術殿堂到國際大師特展的成功實踐，現已全數模組化，讓每一座場館都能輕鬆取用。</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S8 MODELS + UNLOCK (merged) -->
+<section id="models">
+  <div class="container">
+    <div class="sec-header">
+      <span class="sec-eyebrow">導入方案</span>
+      <h2 class="sec-title">靈活的商模服務，<br>為您的場域創造實質營收。</h2>
+      <p class="sec-sub">2026 年場域轉型不再是昂貴的負擔。我們提供三種靈活路徑，助您找到最適合的起點。</p>
+    </div>
+    <div class="merge-layout">
+      <!-- 左側：核心轉型路徑 -->
+      <div class="merge-card merge-left rv">
+        <div style="padding-left:20px;border-left:3px solid #d4af37;">
+          <h3 style="font-size:22px;font-weight:800;margin-bottom:30px;">核心轉型路徑</h3>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid #eee;">
+            <h4 style="font-size:17px;font-weight:700;margin:0;white-space:nowrap;">場域 0 預算啟動</h4>
+            <div style="display:flex;gap:8px;flex-shrink:0;margin-left:16px;">
+              <span style="background:#f1f1f1;color:#333;padding:4px 12px;border-radius:4px;font-size:13px;font-weight:600;">AR 導覽＋導購</span>
+              <span style="background:#f1f1f1;color:#333;padding:4px 12px;border-radius:4px;font-size:13px;font-weight:600;">永續營運模式</span>
+            </div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid #eee;">
+            <h4 style="font-size:17px;font-weight:700;margin:0;white-space:nowrap;">場域優化與升級</h4>
+            <div style="display:flex;gap:8px;flex-shrink:0;margin-left:16px;">
+              <span style="background:#f1f1f1;color:#333;padding:4px 12px;border-radius:4px;font-size:13px;font-weight:600;">AI 虛擬導覽員</span>
+              <span style="background:#f1f1f1;color:#333;padding:4px 12px;border-radius:4px;font-size:13px;font-weight:600;">AR 空間指引</span>
+            </div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid #eee;">
+            <h4 style="font-size:17px;font-weight:700;margin:0;white-space:nowrap;">場域營運模板</h4>
+            <div style="display:flex;gap:8px;flex-shrink:0;margin-left:16px;">
+              <span style="background:#f1f1f1;color:#333;padding:4px 12px;border-radius:4px;font-size:13px;font-weight:600;">年度預算規劃</span>
+              <span style="background:#f1f1f1;color:#333;padding:4px 12px;border-radius:4px;font-size:13px;font-weight:600;">技術規格對齊</span>
+            </div>
+          </div>
+          <p style="font-size:15px;color:#888;padding-top:18px;margin:0;">
+            宇萌 CoreXR 已具備 <strong style="color:#d4af37;">16+</strong> 年協助場館實現虛實整合轉型之深厚經驗。
+          </p>
+        </div>
+      </div>
+      <!-- 右側：索取轉型實戰包 -->
+      <div class="merge-card merge-right rv rv-d1">
+        <h3>索取轉型實戰包</h3>
+        <p class="merge-right-desc">100+ 座場館的數位實踐歷程，想知道他們如何做到？<br>請填寫資訊，我們將為您寄送專屬資料。</p>
+        <form class="merge-form" onsubmit="return false;">
+          <input type="text" placeholder="您的姓名（必填）" aria-label="您的姓名" autocomplete="name" required>
+          <input type="text" placeholder="公司 / 單位名稱（必填）" aria-label="公司 / 單位名稱" autocomplete="organization" required>
+          <input type="text" placeholder="職稱（必填）" aria-label="職稱" autocomplete="organization-title" required>
+          <input type="email" placeholder="聯絡 E-mail（必填）" aria-label="聯絡 E-mail" autocomplete="email" required>
+        </form>
+      </div>
+    </div>
+    <!-- 底部 CTA -->
+    <div class="merge-cta">
+      <a href="#" class="btn-gold btn-merge-cta">獲取專屬轉型解密包 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- S10 FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="sec-header">
+      <span class="sec-eyebrow">常見問題</span>
+      <h2 class="sec-title">您心裡的問題，<br>我們聽過很多次了。</h2>
+    </div>
+    <div class="faq-wrap">
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><h4>中小型場域也適合導入 XR 導覽嗎？</h4><span class="faq-tog">+</span></div>
+        <div class="faq-a">絕對適合。宇萌提供「輕量化 CoreXR 方案」，專為預算精實的策展單位設計，確保小場域也能擁有震撼的互動力。方案 B 的營運共生版以極低初期費用起步，透過後續的導購分潤逐步回收成本。</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><h4>如果沒有工程背景，能操作這套系統嗎？</h4><span class="faq-tog">+</span></div>
+        <div class="faq-a">當然。我們強調「親切領導型」的技術支持，後台介面直覺化，就像使用社群軟體一樣簡單。上線前提供完整教育訓練，全天候技術客服確保您在任何時刻都不孤單。</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><h4>如果未來場館有新的展項或擴建，目前的系統服務能彈性擴充嗎？</h4><span class="faq-tog">+</span></div>
+        <div class="faq-a">當然可以。CoreXR 採用模組化架構設計，就像數位樂高一樣。您可以先從單點的「AI 虛擬導覽」開始，未來再隨時增掛「AR 空間指引」或「數據儀表板」。我們的系統支援雲端即時更新，讓您的場館服務始終保持在科技最前線，無需擔心硬體過時。</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><h4>場域導入 CoreXR 服務，如何評估其數位轉型的實質效益？</h4><span class="faq-tog">+</span></div>
+        <div class="faq-a">數位轉型是一項長期的策略投資。CoreXR 透過 AI 緩解人力維護壓力，並利用「AR 導購模組」提供精準的商業轉化工具。根據不同場域的規模與應用深度，系統能有效協助優化營運成本並帶動周邊營收。宇萌憑藉 16 年場域輔導經驗，能在規劃階段與您共同評估，量身打造最符合預期目標的效益指標。</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><h4>觀眾的行為數據歸誰所有？有資安疑慮嗎？</h4><span class="faq-tog">+</span></div>
+        <div class="faq-a">所有觀眾行為數據完整歸屬場館方所有。宇萌不擁有、不轉售任何場館數據。系統通過政府最高等級資安認證，確保您的數位資產在最安全的環境中被妥善保護。</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q"><h4>導入 AI 虛擬導覽員需要購置昂貴的機器人硬體嗎？</h4><span class="faq-tog">+</span></div>
+        <div class="faq-a">不需要。宇萌 CoreXR 的 <strong>AI 數位虛擬人</strong>採取軟體即服務（SaaS）模式，可相容於場域現有的顯示螢幕、Kiosk 或訪客手機（WebXR）。這能讓您避開硬體折舊與維修成本，專注於內容價值的傳遞。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S11 CTA -->
+<section id="cta">
+  <div class="container">
+    <span class="cta-eyebrow">2026 場域數位轉型首選</span>
+    <h2 class="cta-title">讓科技述說場域故事，<br>創造每一吋空間的商業產值。</h2>
+    <p class="cta-sub">您是否也曾想過，如果展品會說故事，觀眾會停留多久？2026 年的答案，CoreXR 已經準備好了。</p>
+    <div class="cta-3pts">
+      <div class="cta-pt"><h5>現象級聲量引爆</h5><p>透過 <strong>CoreXR 視覺震撼</strong>與 <strong>XR 體驗設計</strong>，讓場域自帶社群流量，達成 <strong>50% 觀眾留駐時間提升</strong>。</p></div>
+      <div class="cta-pt"><h5>AI 虛擬顧問導覽</h5><p><strong>24 小時</strong>隨時在位，提供<strong>多語系專業接待</strong>，有效優化 <strong>30% 人力運營成本</strong>，賦予場域領導姿態。</p></div>
+      <div class="cta-pt"><h5>AR 互動商業獲利</h5><p>導覽即導購。當觀眾被感動的瞬間，透過 <strong>AR 導購模組</strong>立即完成<strong>商業轉化</strong>，讓互動直接變現。</p></div>
+    </div>
+    <div class="cta-btns">
+      <a href="https://line.me/R/ti/p/@847merpl" target="_blank" rel="noopener" class="btn-ghost">LINE 預約免費場域健檢 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo"><img src="coreXR_LOGO.png" alt="宇萌 CoreXR - 場域數位轉型與 AI 導覽專家" style="height:28px;width:auto;"></div>
+  <p>© 2026 宇萌數位科技有限公司・場域數位轉型夥伴</p>
+</footer>
+
+<script>
+function switchTab(i){
+  document.querySelectorAll('.m-tab').forEach((t,j)=>{
+    t.classList.toggle('active',i===j);
+    t.setAttribute('aria-selected',i===j);
+  });
+  document.querySelectorAll('.m-panel').forEach((p,j)=>p.classList.toggle('active',i===j));
+}
+function toggleFaq(el){
+  const was=el.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
+  if(!was)el.classList.add('open');
+}
+function toggleGpc(btn,id){
+  const box=document.getElementById(id);
+  const open=btn.getAttribute('aria-expanded')==='true';
+  box.classList.toggle('open',!open);
+  btn.setAttribute('aria-expanded',String(!open));
+  btn.querySelector('.gpc-toggle-text').textContent=open?'了解更多':'收起';
+}
+const obs=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');});
+},{threshold:0.12});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+
+</script>
+</body>
+</html>
